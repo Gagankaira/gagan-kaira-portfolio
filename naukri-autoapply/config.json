@@ -1,0 +1,20 @@
+{
+  "locations": ["Hyderabad", "Bangalore", "Bengaluru", "Pune", "Chennai", "Noida", "Gurgaon", "Remote"],
+  "keywords": [
+    "Azure Data Engineer",
+    "Senior Azure Data Engineer",
+    "Azure Databricks Data Engineer",
+    "Databricks Data Engineer",
+    "Senior Data Engineer Azure",
+    "PySpark Azure Data Engineer"
+  ],
+  "required_any": ["azure", "databricks", "pyspark", "azure data factory", "adf", "adls"],
+  "preferred": ["sql", "synapse", "delta lake", "python", "etl", "elt", "data warehouse"],
+  "min_score": 65,
+  "max_applications_per_run": 10,
+  "max_applications_per_day": 30,
+  "freshness_days": 14,
+  "dry_run": true,
+  "pause_on_captcha": true,
+  "pause_on_unknown_question": true
+}
