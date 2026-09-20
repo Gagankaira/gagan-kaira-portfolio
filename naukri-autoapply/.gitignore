@@ -1,0 +1,6 @@
+naukri-profile/
+.venv/
+__pycache__/
+applications.json
+unanswered-questions.json
+failed-jobs.json
