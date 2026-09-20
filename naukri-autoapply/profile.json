@@ -1,0 +1,12 @@
+{
+  "experience_years": 5.2,
+  "current_title": "Senior Data Engineer",
+  "current_company": "BOSCH",
+  "location": "Hyderabad",
+  "preferred_locations": ["Hyderabad", "Bangalore", "Bengaluru", "Pune", "Chennai", "Noida", "Gurgaon", "Remote"],
+  "notice_period_days": 45,
+  "current_ctc_lpa": 17,
+  "expected_ctc_lpa": 30,
+  "skills": ["Azure", "Azure Data Factory", "ADLS Gen2", "Azure Databricks", "PySpark", "Python", "SQL", "Azure Synapse Analytics", "Delta Lake", "ETL", "ELT", "Data Warehousing", "Azure DevOps"],
+  "certification": "Microsoft DP-203"
+}
