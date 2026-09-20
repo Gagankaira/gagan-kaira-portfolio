@@ -1,0 +1,48 @@
+{
+  "candidate": "Gagan Kaira",
+  "experience_years": 5.2,
+  "title_targets": [
+    "Azure Data Engineer",
+    "Senior Azure Data Engineer",
+    "Azure Databricks Engineer",
+    "Databricks Data Engineer",
+    "Senior Data Engineer Azure"
+  ],
+  "skills": [
+    "Azure",
+    "Azure Data Factory",
+    "ADLS Gen2",
+    "Azure Databricks",
+    "PySpark",
+    "Python",
+    "SQL",
+    "Azure Synapse Analytics",
+    "Delta Lake",
+    "ETL",
+    "ELT",
+    "Data Warehousing",
+    "Data Modeling",
+    "Azure DevOps",
+    "CI/CD",
+    "Git"
+  ],
+  "locations": [
+    "Hyderabad",
+    "Bengaluru",
+    "Pune",
+    "Chennai",
+    "Gurugram",
+    "Noida",
+    "India",
+    "Remote India"
+  ],
+  "target_companies": [
+    "HashedIn by Deloitte","Tiger Analytics","PubMatic","Fragma Data Systems","Fractal",
+    "Quantiphi","Nagarro","Deloitte","KPMG","PwC","EXL","Altimetrik","Virtusa",
+    "LatentView Analytics","Coforge","Datametica Birds","EPAM Systems","CGI",
+    "Eli Lilly and Company","EY","NTT DATA","Tredence Inc.","Thoughtworks",
+    "Amazon Web Services","Microsoft","Google","Snowflake","Databricks","Netflix",
+    "Uber","Swiggy","Flipkart","Amazon","Razorpay","Paytm","ZS",
+    "Axtria","Brillio","Persistent Systems","Optum"
+  ]
+}
