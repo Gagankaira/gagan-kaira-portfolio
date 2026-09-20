@@ -1,31 +1,12 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gagan — Azure DE Job Application Queue</title>
-<style>
-body{margin:0;background:#07111f;color:#eaf2ff;font:15px system-ui,-apple-system,Segoe UI,sans-serif}
-main{max-width:1200px;margin:auto;padding:36px 22px}.top{display:flex;justify-content:space-between;gap:20px;align-items:end;flex-wrap:wrap}
-h1{margin:0;font-size:34px}.muted{color:#91a4bc}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:25px 0}.stat{background:#0d1b2d;border:1px solid #20334d;border-radius:10px;padding:18px}.stat b{font-size:28px;display:block}
-.controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}input,select,button{background:#0b1728;color:#eaf2ff;border:1px solid #29415f;border-radius:8px;padding:10px 12px}button{cursor:pointer}
-table{width:100%;border-collapse:collapse;background:#0b1728;border:1px solid #20334d;border-radius:10px;overflow:hidden}th,td{padding:12px;border-bottom:1px solid #20334d;text-align:left;vertical-align:top}th{color:#91a4bc;font-size:12px;text-transform:uppercase}a{color:#57a6ff}.score{font-weight:700}.pill{display:inline-block;border:1px solid #315074;border-radius:999px;padding:3px 8px;font-size:11px;margin:2px}
-@media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}table{display:block;overflow:auto}}
-</style>
-</head>
-<body>
-<main>
-<div class="top"><div><div class="muted">GAGAN KAIRA / JOB ENGINE</div><h1>Azure Data Engineer Application Queue</h1><p class="muted">Human-in-the-loop: discover → score → prepare → you submit.</p></div><a href="../">Portfolio</a></div>
-<div class="stats"><div class="stat"><b id="total">0</b><span class="muted">qualified jobs</span></div><div class="stat"><b id="strong">0</b><span class="muted">90+ match</span></div><div class="stat"><b id="ready">0</b><span class="muted">ready to apply</span></div><div class="stat"><b id="new">0</b><span class="muted">new this run</span></div></div>
-<div class="controls"><input id="q" placeholder="Search title/company/skill"><select id="loc"><option value="">All locations</option><option>Hyderabad</option><option>Bengaluru</option><option>Pune</option><option>Chennai</option><option>Gurugram</option><option>Noida</option><option>Remote India</option></select><select id="min"><option value="0">Any score</option><option value="80">80+</option><option value="90">90+</option></select><button id="clear">Clear</button></div>
-<table><thead><tr><th>Score</th><th>Role / Company</th><th>Location</th><th>Posted</th><th>Source</th><th>Why it matches</th><th>Action</th></tr></thead><tbody id="rows"></tbody></table>
-</main>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gagan — Azure DE Job Application Queue</title><style>body{margin:0;background:#07111f;color:#eaf2ff;font:15px system-ui}main{max-width:1200px;margin:auto;padding:36px 22px}.muted{color:#91a4bc}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:25px 0}.stat{background:#0d1b2d;border:1px solid #20334d;border-radius:10px;padding:18px}.stat b{font-size:28px;display:block}.controls{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}input,select{background:#0b1728;color:#eaf2ff;border:1px solid #29415f;border-radius:8px;padding:10px 12px}table{width:100%;border-collapse:collapse;background:#0b1728}th,td{padding:12px;border-bottom:1px solid #20334d;text-align:left;vertical-align:top}th{color:#91a4bc;font-size:12px}a{color:#57a6ff}.score{font-weight:700}@media(max-width:850px){.stats{grid-template-columns:repeat(2,1fr)}table{display:block;overflow:auto}}</style></head>
+<body><main><div class="muted">GAGAN KAIRA / JOB ENGINE</div><h1>Azure Data Engineer Application Queue</h1><p class="muted">Discover → score → prepare → human review → submit.</p>
+<div class="stats"><div class="stat"><b id="total">0</b>qualified</div><div class="stat"><b id="strong">0</b>90+ match</div><div class="stat"><b id="ready">0</b>ready</div><div class="stat"><b id="new">0</b>new</div></div>
+<div class="controls"><input id="q" placeholder="Search title/company/skill"><select id="loc"><option value="">All locations</option><option>Hyderabad</option><option>Bengaluru</option><option>Pune</option><option>Chennai</option><option>Gurugram</option><option>Noida</option><option>Remote India</option></select><select id="min"><option value="0">Any score</option><option value="80">80+</option><option value="90">90+</option></select></div>
+<table><thead><tr><th>Score</th><th>Role / Company</th><th>Location</th><th>Posted</th><th>Source</th><th>Match</th><th>Apply</th></tr></thead><tbody id="rows"></tbody></table></main>
 <script>
-let jobs=[];
-const $=s=>document.querySelector(s);
-function score(j){let hay=(j.title+' '+j.company+' '+j.description+' '+(j.skills||[]).join(' ')).toLowerCase();let core=['azure','databricks','pyspark','python','sql','adf','data factory','adls','synapse'];let hits=core.filter(x=>hay.includes(x)).length;let s=Math.min(99,55+hits*5+(j.location?.toLowerCase().includes('hyderabad')?5:0)+(j.experience_ok?8:0));return s}
-function render(){let q=$('#q').value.toLowerCase(),l=$('#loc').value,m=+$('%min').value;let list=jobs.map(j=>({...j,score:j.score||score(j)})).filter(j=>(!q||(j.title+' '+j.company+' '+j.description).toLowerCase().includes(q))&&(!l||j.location.includes(l))&&j.score>=m).sort((a,b)=>b.score-a.score);$('#total').textContent=list.length;$('#strong').textContent=list.filter(j=>j.score>=90).length;$('#ready').textContent=list.filter(j=>j.status==='ready').length;$('#new').textContent=list.filter(j=>j.new).length;$('#rows').innerHTML=list.map(j=>'<tr><td class="score">'+j.score+'%</td><td><b>'+j.title+'</b><br><span class="muted">'+j.company+'</span></td><td>'+j.location+'</td><td>'+j.posted+'</td><td>'+j.source+'</td><td>'+j.reason+'</td><td><a href="'+j.url+'" target="_blank">Open application ↗</a></td></tr>').join('')}
-async function load(){try{let r=await fetch('jobs.json');jobs=await r.json()}catch(e){jobs=[]}render()}
-['#q','#loc','#min'].forEach(s=>$(s).addEventListener('input',render));$('#clear').onclick=()=>{$('#q').value='';$('#loc').value='';$('#min').value='0';render()};load();
-</script>
-</body></html>
+let jobs=[];const $=s=>document.querySelector(s);
+function score(j){let hay=(j.title+' '+j.company+' '+j.description+' '+(j.skills||[]).join(' ')).toLowerCase(),core=['azure','databricks','pyspark','python','sql','adf','data factory','adls','synapse'];let hits=core.filter(x=>hay.includes(x)).length;return Math.min(99,55+hits*5+(j.location?.toLowerCase().includes('hyderabad')?5:0)+(j.experience_ok?8:0))}
+function render(){let q=$('#q').value.toLowerCase(),l=$('#loc').value,m=+$('#min').value;let list=jobs.map(j=>({...j,score:j.score||score(j)})).filter(j=>(!q||(j.title+' '+j.company+' '+j.description).toLowerCase().includes(q))&&(!l||j.location.includes(l))&&j.score>=m).sort((a,b)=>b.score-a.score);$('#total').textContent=list.length;$('#strong').textContent=list.filter(j=>j.score>=90).length;$('#ready').textContent=list.filter(j=>j.status==='ready').length;$('#new').textContent=list.filter(j=>j.new).length;$('#rows').innerHTML=list.map(j=>'<tr><td class="score">'+j.score+'%</td><td><b>'+j.title+'</b><br><span class="muted">'+j.company+'</span></td><td>'+j.location+'</td><td>'+j.posted+'</td><td>'+j.source+'</td><td>'+j.reason+'</td><td><a href="'+j.url+'" target="_blank" rel="noopener">Open ↗</a></td></tr>').join('')}
+async function load(){try{jobs=await (await fetch('jobs.json')).json()}catch(e){jobs=[]}render()}['#q','#loc','#min'].forEach(s=>$(s).addEventListener('input',render));load();
+</script></body></html>
